@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/activity_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"></include>
+
+    <ImageView
+        android:id="@+id/image_prof"
+        android:layout_width="200dp"
+        android:layout_height="320dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:src="@drawable/hangoeun"/>
+
+    <Button
+        android:id="@+id/btn_left"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/left"
+        android:layout_alignParentLeft="true" />
+    <Button
+        android:id="@+id/btn_right"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btn_left"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/right"/>
+
+    <Button
+        android:id="@+id/btn_star"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@+id/image_prof"
+        android:layout_alignEnd="@+id/image_prof"
+        android:background="@drawable/star"
+        android:layout_alignRight="@+id/image_prof" />
+
+
+
+</RelativeLayout>

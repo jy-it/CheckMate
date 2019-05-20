@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/activity_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"></include>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:background="@drawable/background"
+        >
+
+        <Button
+            android:id="@+id/matching_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="115dp"
+            android:background="@drawable/button"
+            android:onClick="goRoomList"
+            android:text="Matching"
+            android:scaleType="fitCenter"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/waiting_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="115dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button"
+            android:onClick="goWaitingRoom"
+            android:text="Waiting"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/evaluate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/matching_btn"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/button"
+            android:onClick="goEvaluate"
+            android:text="Evaluate"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/ranking_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/waiting_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button"
+            android:onClick="goRanking"
+            android:text="Ranking"
+            android:textAllCaps="false"/>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

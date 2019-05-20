@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="키">
+        <item>190cm 이상</item>
+        <item>185cm~190cm</item>
+        <item>180cm~185cm</item>
+        <item>175cm~180cm</item>
+        <item>170cm~175cm</item>
+        <item>165cm~170cm</item>
+        <item>160cm~165cm</item>
+        <item>150cm~155cm</item>
+        <item>145cm~150cm</item>
+        <item>145cm 이하</item>
+    </string-array>
+</resources>

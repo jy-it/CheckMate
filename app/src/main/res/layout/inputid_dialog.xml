@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createroom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/inputID">
+
+        <TextView
+            android:id="@+id/idcomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID를 입력하세요 "
+            android:layout_marginLeft="30dp"/>
+
+        <EditText
+            android:id="@+id/IDtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여기에 입력하세요"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+
+            />
+    <!--TODO 수정-->
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/dialog_ok2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="적용"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_below="@id/inputID"
+        />
+
+    <Button
+        android:id="@+id/dialog_Cancel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/dialog_ok2"
+        android:text="취소"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/inputID"
+        />
+</RelativeLayout>

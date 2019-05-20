@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.example.wlsxo.checkmate.StateRoomActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/makestateView1"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/makestateView2"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <ImageView
+            android:id="@+id/makestateView3"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <ImageView
+            android:id="@+id/makestateView4"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+
+            <CheckBox
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="30dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

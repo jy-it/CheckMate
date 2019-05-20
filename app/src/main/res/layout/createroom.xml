@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/createroom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <!--TODO 수정-->
+        <EditText
+            android:id="@+id/roomname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="방 제목"
+            android:layout_centerHorizontal="true"/>
+    <!--TODO 수정-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/roomname"
+        android:id="@+id/addBtnlayout"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+    </LinearLayout>
+
+    <!--TODO 수정-->
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하고 싶은 말"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/addBtnlayout"
+            android:gravity="center"
+            />
+    <!--TODO 수정-->
+
+        <Button
+            android:id="@+id/Success"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="완료"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@id/comment"
+            />
+
+        <Button
+            android:id="@+id/Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Success"
+            android:text="취소"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/comment"
+            />
+    </RelativeLayout>
