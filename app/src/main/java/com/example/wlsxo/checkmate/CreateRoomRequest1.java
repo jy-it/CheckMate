@@ -21,11 +21,6 @@ public class CreateRoomRequest1  extends StringRequest {
         parameters.put("roomComment",roomComment);
         parameters.put("joinNum",joinNum + "");
         parameters.put("readerID",memberID[0]);
-
-        parameters.put("oneID",memberID[0]);
-
-        Log.i("맴버1",parameters.get("oneID"));
-
     }
 
     @Override

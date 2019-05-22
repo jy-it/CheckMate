@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,8 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
     EditText r_Comment;
 
     int member_count;
+
+    int roomNumber;
 
     String [] member_arr = new String[4];
 
@@ -64,11 +67,14 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
                 String roomComment = r_Comment.getText().toString();
 
 
+
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
                         try {
+
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
@@ -77,6 +83,120 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
                                         .setPositiveButton("확인", null)
                                         .create()
                                         .show();
+
+
+
+
+
+                                //방번호 추출
+                                Response.Listener<String> responseListener_rnum = new Response.Listener<String>() {
+
+                                    @Override
+                                    public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
+                                        try {
+
+                                            JSONObject jsonResponse = new JSONObject(response);
+                                            boolean success = jsonResponse.getBoolean("success");
+                                            if (success) {
+
+                                                roomNumber = jsonResponse.getInt("roomNumber");
+
+
+                                                Log.i("방 번호 출력 = ", roomNumber + " 아이디 = " + member_arr[0]);
+
+
+
+
+
+
+
+
+
+                                                //맴버 등록
+                                                Response.Listener<String> responseListener_member = new Response.Listener<String>() {
+
+                                                    @Override
+                                                    public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
+                                                        try {
+
+                                                            JSONObject jsonResponse = new JSONObject(response);
+                                                            boolean success = jsonResponse.getBoolean("success");
+                                                            if (success) {
+
+                                                                Log.i("맴버등록 ","SQL은 성공");
+                                                                Intent intent = new Intent(CreateRoomActivity.this, RoomListActivity.class);
+                                                                CreateRoomActivity.this.startActivity(intent);
+
+
+                                                            } else {
+                                                                Log.i("맴버등록 ","실패");
+                                                                Toast.makeText(getApplicationContext(), "맴버 DB에 저장 실패", Toast.LENGTH_LONG).show();
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            Log.i("맴버등록","예외발생");
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                };
+                                                if(member_count == 1){
+                                                    //파라미터들을 객체에 담는다.
+                                                    InsertMemberRequest1 insertMemberRequest1 = new InsertMemberRequest1(roomNumber, member_arr, responseListener_member);
+
+                                                    //큐에 파라미터가 담긴 객체를 넣는다.
+                                                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
+                                                    queue.add(insertMemberRequest1);
+                                                }
+                                                else if(member_count == 2){
+                                                    //파라미터들을 객체에 담는다.
+                                                    InsertMemberRequest2 insertMemberRequest2 = new InsertMemberRequest2(roomNumber, member_arr, responseListener_member);
+
+                                                    //큐에 파라미터가 담긴 객체를 넣는다.
+                                                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
+                                                    queue.add(insertMemberRequest2);
+                                                }
+                                                else if(member_count == 3){
+                                                    //파라미터들을 객체에 담는다.
+                                                    InsertMemberRequest3 insertMemberRequest3 = new InsertMemberRequest3(roomNumber, member_arr, responseListener_member);
+
+                                                    //큐에 파라미터가 담긴 객체를 넣는다.
+                                                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
+                                                    queue.add(insertMemberRequest3);
+                                                }
+                                                else if(member_count == 4){
+                                                    //파라미터들을 객체에 담는다.
+                                                    InsertMemberRequest4 insertMemberRequest4 = new InsertMemberRequest4(roomNumber, member_arr, responseListener_member);
+
+                                                    //큐에 파라미터가 담긴 객체를 넣는다.
+                                                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
+                                                    queue.add(insertMemberRequest4);
+                                                }
+
+
+                                                Toast.makeText(getApplicationContext(), "맴버 등록 완료", Toast.LENGTH_LONG).show();
+
+
+
+
+                                            } else {
+                                                Log.i("방 번호 추출 실패"," ");
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+
+                                            Log.i("방 번호 추출 실패","예외발생");
+                                        }
+                                    }
+                                };
+
+                                //파라미터들을 객체에 담는다.
+                                FindRoomNumberRequest findRoomNumberRequest = new FindRoomNumberRequest(member_arr, responseListener_rnum);
+
+                                //큐에 파라미터가 담긴 객체를 넣는다.
+                                RequestQueue queue_rnum = Volley.newRequestQueue(CreateRoomActivity.this);
+                                queue_rnum.add(findRoomNumberRequest);
+
+
+
 
                                 Intent intent = new Intent(CreateRoomActivity.this, RoomListActivity.class);
                                 CreateRoomActivity.this.startActivity(intent);
@@ -88,48 +208,17 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
                                         .setNegativeButton("다시 시도", null)
                                         .create()
                                         .show();
-
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 };
+                CreateRoomRequest1 createRoomRequest1 = new CreateRoomRequest1(roomTitle,roomComment,member_count, member_arr, responseListener);
 
-                if(member_count == 1){
-                    //파라미터들을 객체에 담는다.
-                    CreateRoomRequest1 createRoomRequest1 = new CreateRoomRequest1(roomTitle,roomComment,member_count, member_arr, responseListener);
-
-                    //큐에 파라미터가 담긴 객체를 넣는다.
-                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
-                    queue.add(createRoomRequest1);
-                }
-                else if(member_count == 2){
-                    //파라미터들을 객체에 담는다.
-                    CreateRoomRequest2 createRoomRequest2 = new CreateRoomRequest2(roomTitle,roomComment,member_count, member_arr, responseListener);
-
-                    //큐에 파라미터가 담긴 객체를 넣는다.
-                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
-                    queue.add(createRoomRequest2);
-                }
-                else if(member_count == 3){
-                    //파라미터들을 객체에 담는다.
-                    CreateRoomRequest3 createRoomRequest3 = new CreateRoomRequest3(roomTitle,roomComment,member_count, member_arr, responseListener);
-
-                    //큐에 파라미터가 담긴 객체를 넣는다.
-                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
-                    queue.add(createRoomRequest3);
-                }
-                else if(member_count == 4){
-                    //파라미터들을 객체에 담는다.
-                    CreateRoomRequest4 createRoomRequest4 = new CreateRoomRequest4(roomTitle,roomComment,member_count, member_arr, responseListener);
-
-                    //큐에 파라미터가 담긴 객체를 넣는다.
-                    RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
-                    queue.add(createRoomRequest4);
-                }
-
+                //큐에 파라미터가 담긴 객체를 넣는다.
+                RequestQueue queue = Volley.newRequestQueue(CreateRoomActivity.this);
+                queue.add(createRoomRequest1);
 
                 Toast.makeText(getApplicationContext(), "방 생성 완료", Toast.LENGTH_LONG).show();
 
@@ -157,7 +246,6 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
         imageview1.setImageBitmap(MainActivity.userPicture);
         member_arr[0] = MainActivity.userID;
 
-        //imageview1.setOnClickListener(this);
         imageview2.setOnClickListener(this);
         imageview3.setOnClickListener(this);
         imageview4.setOnClickListener(this);
