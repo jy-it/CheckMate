@@ -12,9 +12,11 @@
         layout="@layout/activity_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"></include>
+        android:layout_alignParentTop="true">
+
+    </include>
 
     <RelativeLayout
         android:id="@+id/subtitle"
@@ -75,21 +77,23 @@
 
     <ListView
         android:id="@+id/List_view"
+        android:layout_below="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/bottom"
-        android:layout_marginBottom="85dp">
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/hangoeun"
+        >
     </ListView>
 
     <Button
         android:id="@+id/btn_roomadd"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/add"
-        android:onClick="goCreateRoom"/>
+        android:onClick="goCreateRoom" />
 
 </RelativeLayout>
 

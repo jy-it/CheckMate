@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +35,14 @@ public class ListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.roomlist, parent, false);
+            convertView = inflater.inflate(R.layout.listview_roomlist, parent, false);
         }
 
         ImageView image = (ImageView) convertView.findViewById(R.id.image_sex) ;
         TextView title = (TextView) convertView.findViewById(R.id.rmlist_title) ;
         TextView numofperson = (TextView) convertView.findViewById(R.id.numofperson) ;
-
+        Button btn_apply = convertView.findViewById(R.id.btn_apply);
+        Button btn_detail =convertView.findViewById(R.id.btn_detail);
 
         ListViewItem listViewItem = listVO.get(position);
 
@@ -58,6 +60,28 @@ public class ListViewAdapter extends BaseAdapter {
             }
         });
 
+
+        btn_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                ListRoomapplyDialog customDialog = new ListRoomapplyDialog(context);
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction();
+            }
+        });
+
+        btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                ListRoomdetailDialog1 customDialog = new ListRoomdetailDialog1(context);
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction();
+            }
+        });
 
         return convertView;
     }

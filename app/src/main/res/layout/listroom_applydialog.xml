@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createroom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/idcodetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="[신청자 ID_Code 입력]"
+        android:textSize="18dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idcodetitle"
+        android:id="@+id/layout_inputID">
+
+
+
+        <TextView
+            android:id="@+id/idcomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ID_Code1:"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/inputidcode1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="IDCode를 입력하세요."
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+
+            />
+        <!--TODO 수정-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_inputID"
+        android:id="@+id/layout_inputID2">
+
+        <TextView
+            android:id="@+id/idcomment2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ID_Code2:"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/inputidcode2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="IDCode를 입력하세요."
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+
+            />
+        <!--TODO 수정-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/layout_inputID2"
+        android:id="@+id/layout_inputID3">
+
+        <TextView
+            android:id="@+id/idcomment3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ID_Code3:"
+
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/inputidcode3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:hint="IDCode를 입력하세요."
+            android:textSize="16dp"/>
+        <!--TODO 수정-->
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_inputID3"
+        android:id="@+id/layout_inputID4">
+
+        <TextView
+            android:id="@+id/idcomment4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ID_Code4:"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/inputidcode4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:hint="IDCode를 입력하세요."
+            android:textSize="16dp"
+            />
+        <!--TODO 수정-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dialog_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="100dp"
+        android:text="신청"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="100dp" />
+
+    <Button
+        android:id="@+id/dialog_Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/dialog_ok"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="200dp"
+        android:text="취소"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
+        />
+</RelativeLayout>

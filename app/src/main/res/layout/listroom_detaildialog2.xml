@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/registerImg2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_launcher_background"
+            />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/registerImg2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="17dp"
+            android:scrollbars="vertical"
+            android:stretchColumns="0">
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/nameText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="이름:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/ageText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="나이:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/deptText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="학과:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/hobbyText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취미:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/live2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지역:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/height2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="키:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="체형:"
+                    android:textSize="20dp"
+                    android:inputType="textPersonName" />
+            </TableRow>
+            <!--스피너
+
+            <TableRow>
+                <Spinner
+                    android:id="@+id/liveSpinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/지역"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <Spinner
+                    android:id="@+id/heightSpinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/키"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow>
+                <Spinner
+                    android:id="@+id/bodySpinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/체형"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+             -->
+
+
+            <TextView
+                android:id="@+id/charmText2"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:inputType="textMultiLine"
+                android:text="나의 매력:"
+                android:textSize="20dp"
+                />
+
+
+            <TableRow>
+                <Button
+                    android:id="@+id/resisterButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="뒤로가기" />
+            </TableRow>
+
+        </TableLayout>
+    </RelativeLayout>
+</ScrollView>
