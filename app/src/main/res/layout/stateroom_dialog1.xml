@@ -33,7 +33,7 @@
 
             <TableRow>
 
-                <EditText
+                <TextView
                     android:id="@+id/nameText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
 
             <TableRow>
 
-                <EditText
+                <TextView
                     android:id="@+id/ageText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
 
             <TableRow>
 
-                <EditText
+                <TextView
                     android:id="@+id/deptText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
 
             <TableRow>
 
-                <EditText
+                <TextView
                     android:id="@+id/hobbyText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,34 +74,34 @@
             </TableRow>
 
             <TableRow>
-                <Spinner
+                <TextView
                     android:id="@+id/liveSpinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/지역"
+                    android:hint="지역"
                     android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow>
-                <Spinner
+                <TextView
                     android:id="@+id/heightSpinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/키"
+                    android:hint="키"
                     android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow>
 
-                <Spinner
+                <TextView
                     android:id="@+id/bodySpinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/체형"
+                    android:hint="체형"
                     android:inputType="textPersonName" />
             </TableRow>
 
-            <EditText
+            <TextView
                 android:id="@+id/charmText2"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"

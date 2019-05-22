@@ -37,13 +37,14 @@ public class StateRoomDialog1 {
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
         final ImageView imageView1 = (ImageView) dlg.findViewById(R.id.registerImg2);
-        final EditText message1 = (EditText) dlg.findViewById(R.id.nameText2);
-        final EditText message2 = (EditText) dlg.findViewById(R.id.ageText2);
-        final EditText message3 = (EditText) dlg.findViewById(R.id.deptText2);
-        final Spinner spinner1 = (Spinner) dlg.findViewById(R.id.liveSpinner2);
-        final Spinner spinner2 = (Spinner) dlg.findViewById(R.id.heightSpinner2);
-        final Spinner spinner3 = (Spinner) dlg.findViewById(R.id.bodySpinner2);
-        final EditText message4 = (EditText) dlg.findViewById(R.id.charmText2);
+        final TextView  message1 = (TextView) dlg.findViewById(R.id.nameText2);
+        final TextView message2 = (TextView) dlg.findViewById(R.id.ageText2);
+        final TextView message3 = (TextView) dlg.findViewById(R.id.deptText2);
+        final TextView message4 = (TextView) dlg.findViewById(R.id.hobbyText2);
+        final TextView spinner1 = (TextView) dlg.findViewById(R.id.liveSpinner2);
+        final TextView spinner2 = (TextView) dlg.findViewById(R.id.heightSpinner2);
+        final TextView spinner3 = (TextView) dlg.findViewById(R.id.bodySpinner2);
+        final TextView message5 = (TextView) dlg.findViewById(R.id.charmText2);
         final Button okButton = (Button) dlg.findViewById(R.id.resisterButton2);
 
 

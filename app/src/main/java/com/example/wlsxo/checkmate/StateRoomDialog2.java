@@ -35,12 +35,12 @@ public class StateRoomDialog2 {
         dlg.show();
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
-        final EditText message1 = (EditText) dlg.findViewById(R.id.roomname2);
+        final TextView message1 = (TextView) dlg.findViewById(R.id.roomname2);
         final ImageView imageView1 = (ImageView) dlg.findViewById(R.id.imageViewdialog1);
         final ImageView imageView2 = (ImageView) dlg.findViewById(R.id.imageViewdialog2);
         final ImageView imageView3 = (ImageView) dlg.findViewById(R.id.imageViewdialog3);
         final ImageView imageView4 = (ImageView) dlg.findViewById(R.id.imageViewdialog4);
-        final EditText message2 = (EditText) dlg.findViewById(R.id.comment2);
+        final TextView message2 = (TextView) dlg.findViewById(R.id.comment2);
         final Button okButton = (Button) dlg.findViewById(R.id.dialog_ok);
         final Button cancelButton = (Button) dlg.findViewById(R.id.dialog_Cancel);
 
