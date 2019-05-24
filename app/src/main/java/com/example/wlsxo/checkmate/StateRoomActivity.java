@@ -22,9 +22,9 @@ public class StateRoomActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     private ListView listview2 ;
     private ListWaitingAdapter adapter2;
-    private int[] img = {R.drawable.seoul,R.drawable.busan,R.drawable.seoul,R.drawable.busan,
-            R.drawable.seoul,R.drawable.busan,R.drawable.seoul,R.drawable.busan};
-    //waitingroom 용
+//    TODO 사진변경
+    private int[] img = {R.drawable.male,R.drawable.female,R.drawable.male,R.drawable.female,R.drawable.male,R.drawable.female};
+    //waitingroom 용 끝
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,20 +89,6 @@ public class StateRoomActivity extends AppCompatActivity {
         // 커스텀 다이얼로그에서 입력한 메시지를 출력할 TextView 를 준비한다.
         final Button button1 = (Button) findViewById(R.id.room_add2);
 
-        // 커스텀 다이얼로그를 호출할 이미지뷰을 정의한다.
-/*        final Button button = (Button) button1.findViewById(R.id.room_add2);
-
-        // 커스텀 다이얼로그 호출할 클릭 이벤트 리스너 정의
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                StateRoomDialog2 customDialog = new StateRoomDialog2(StateRoomActivity.this);
-                // 커스텀 다이얼로그를 호출한다.
-                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                customDialog.callFunction(button1);
-            }
-        });*/
         //------------waitingroom 리스트-------------------//
     }
 

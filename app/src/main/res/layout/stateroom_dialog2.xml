@@ -13,7 +13,7 @@
         android:id="@+id/roomname2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="방 제목"
+        android:hint="방 제목 불러오기"
         android:layout_centerHorizontal="true"/>
     <!--TODO 수정-->
 
@@ -66,7 +66,7 @@
         android:id="@+id/comment2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="내용"
+        android:hint="내용 불러오기"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:layout_below="@id/addBtnlayout"

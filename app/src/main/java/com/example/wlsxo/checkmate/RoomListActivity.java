@@ -153,6 +153,11 @@ public class RoomListActivity extends AppCompatActivity {
 
     }
 
+    public void gomain(View view){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
     public void goCreateRoom(View view){
         Intent intent = new Intent(this,CreateRoomActivity.class);
         startActivity(intent);
@@ -164,7 +169,7 @@ public class RoomListActivity extends AppCompatActivity {
     RadioButton.OnClickListener radioButtonClickListener = new RadioButton.OnClickListener(){
         @Override
         public void onClick(View view) {
-              }
+        }
 
     };
 

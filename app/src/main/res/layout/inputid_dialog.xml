@@ -17,14 +17,14 @@
             android:id="@+id/idcomment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID를 입력하세요 "
+            android:hint="ID를 입력하세요 "
             android:layout_marginLeft="30dp"/>
 
         <EditText
             android:id="@+id/IDtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여기에 입력하세요"
+            android:hint="여기에 입력하세요"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="30dp"
 

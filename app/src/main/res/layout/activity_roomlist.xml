@@ -45,17 +45,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <RadioButton
-            android:id="@+id/rbtn_male"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="남성"/>
+            <RadioButton
+                android:id="@+id/rbtn_male"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:text="남성"/>
 
-        <RadioButton
-            android:id="@+id/rbtn_female"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="여성"/>
+            <RadioButton
+                android:id="@+id/rbtn_female"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:text="여성"/>
 
         </RadioGroup>
 
@@ -84,7 +84,15 @@
         android:background="@drawable/hangoeun"
         >
     </ListView>
-
+    gohome
+    <Button
+        android:id="@+id/btn_gohome"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/gohome"
+        android:onClick="gomain" />
     <Button
         android:id="@+id/btn_roomadd"
         android:layout_width="60dp"
