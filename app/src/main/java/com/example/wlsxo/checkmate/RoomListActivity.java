@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.service.autofill.UserData;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,6 +47,8 @@ public class RoomListActivity extends AppCompatActivity {
     //private String[] Title = {"방 제목:1","방 제목:2", "방 제목:3", "방 제목:4", "방 제목:5", "방 제목:6", "방 제목:7", "방 제목:8", "방 제목:9", "방 제목:10", "방 제목:11", "방 제목:12"};
     //private String[] Context = {"인원 수:1","인원 수:2","인원 수:3","인원 수:4","인원 수:5","인원 수:6","인원 수:7","인원 수:8","인원 수:9","인원 수:10","인원 수:11","인원 수:12"};
 
+    //방 이미 만들었는지 체크하기 위한 변수
+    int r_check = 0;
 
     @Override
     protected void onResume() {
@@ -159,8 +163,60 @@ public class RoomListActivity extends AppCompatActivity {
     }
 
     public void goCreateRoom(View view){
-        Intent intent = new Intent(this,CreateRoomActivity.class);
-        startActivity(intent);
+
+
+
+        //이미 방을 만들었는지 검사
+        Response.Listener<String> responseListener_check = new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
+
+                try {
+
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+
+                        r_check = jsonResponse.getInt("checkCount");
+
+                        Log.i("방 개수 = ",r_check + "");
+
+                        //생성한 방의 개수가 0개라면 통과
+                        if(r_check == 0){
+                            Intent intent = new Intent(RoomListActivity.this,CreateRoomActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(RoomListActivity.this);
+                            builder.setMessage("이미 만들어진 방이 있습니다.")
+                                    .setNegativeButton("돌아가기", null)
+                                    .create()
+                                    .show();
+                        }
+
+                    } else {
+                        Log.i("방 만들었는지 체크","검사 실패");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                    Log.i("방 만들었는지 체크","예외발생");
+                }
+
+            }
+        };
+        //파라미터들을 객체에 담는다.
+        CheckCreateRoomRequest checkCreateRoomRequest = new CheckCreateRoomRequest(MainActivity.userID, responseListener_check);
+
+        //큐에 파라미터가 담긴 객체를 넣는다.
+        RequestQueue queue_check = Volley.newRequestQueue(RoomListActivity.this);
+        queue_check.add(checkCreateRoomRequest);
+
+
+
+
+
     }
 
 

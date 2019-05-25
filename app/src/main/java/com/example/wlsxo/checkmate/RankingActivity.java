@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,13 +28,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
-
-        //상단 바
-        myimg_view = (de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.indexImage);
-        myname = (TextView)findViewById(R.id.indexID);
-        myimg_view.setImageBitmap(MainActivity.userPicture);
-        myname.setText(MainActivity.userName);
-
 
         bt1 = (ImageButton) findViewById(R.id.btn_man);
         bt2 = (ImageButton) findViewById(R.id.btn_woman);
