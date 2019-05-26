@@ -33,9 +33,9 @@ public class ListRoomdetailDialog1 {
         dlg.show();
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
-        final TextView message1 = (EditText) dlg.findViewById(R.id.textview_roomtitle);
-        final TextView message2 = (EditText) dlg.findViewById(R.id.textview_commenttitle);
-        final TextView message3 = (EditText) dlg.findViewById(R.id.textview_comment);
+        final TextView message1 = (TextView) dlg.findViewById(R.id.textview_roomtitle);
+        final TextView message2 = (TextView) dlg.findViewById(R.id.textview_commenttitle);
+        final TextView message3 = (TextView) dlg.findViewById(R.id.textview_comment);
 
         final ImageView imageView1 = (ImageView) dlg.findViewById(R.id.imageViewdialog1);
         final ImageView imageView2 = (ImageView) dlg.findViewById(R.id.imageViewdialog2);

@@ -7,6 +7,13 @@ public class ListViewItem {
     private String Title;
     private String numofperson;
 
+    //kjt-수정(매칭신청)
+    private int r_num;
+
+    //kjt-수정(매칭신청)
+    public void setR_num(int r_num) {this.r_num = r_num;}
+    public int getR_num() {return r_num;}
+
     public Drawable getImg() {
         return img;
     }

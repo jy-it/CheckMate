@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ListRoomapplyDialog {
+public class ListRoomapplyDialog{
 
     private Context context;
 
@@ -16,8 +16,25 @@ public class ListRoomapplyDialog {
         this.context = context;
     }
 
+
+    private ListRoomapplyDialog.ApplyCustomDialogListener listRoomapplyDialogListener;
+
+    //인터페이스 설정
+    interface ApplyCustomDialogListener{
+        void onPositiveClicked(int r_num);
+        void onNegativeClicked();
+    }
+
+    //호출할 리스너 초기화
+    public void setDialogListener(ListRoomapplyDialog.ApplyCustomDialogListener listRoomapplyDialogListener){
+        this.listRoomapplyDialogListener = listRoomapplyDialogListener;
+    }
+
+
+
+
     // 호출할 다이얼로그 함수를 정의한다.
-    public void callFunction() {
+    public void callFunction(int r_num) {
 
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         final Dialog dlg = new Dialog(context);
@@ -42,6 +59,8 @@ public class ListRoomapplyDialog {
         final Button cancelButton = (Button) dlg.findViewById(R.id.dialog_Cancel);
 
 
+
+
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +70,8 @@ public class ListRoomapplyDialog {
                 dlg.dismiss();
             }
         });
+
+
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override

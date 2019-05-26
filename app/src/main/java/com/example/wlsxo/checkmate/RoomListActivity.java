@@ -42,6 +42,9 @@ public class RoomListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter;
     ArrayList<RoomData> roomData = new ArrayList<RoomData>();
+
+
+
     private int[] img = {R.drawable.male,R.drawable.female};
     //방 제목, 인원 수 직접설정
     //private String[] Title = {"방 제목:1","방 제목:2", "방 제목:3", "방 제목:4", "방 제목:5", "방 제목:6", "방 제목:7", "방 제목:8", "방 제목:9", "방 제목:10", "방 제목:11", "방 제목:12"};
@@ -52,17 +55,21 @@ public class RoomListActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
-        adapter = new ListViewAdapter();
+        adapter = new ListViewAdapter(RoomListActivity.this);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     roomData.clear();
+
                     JSONArray jsonArray = new JSONArray(response);
 
                     for( int i = 0 ; i < jsonArray.length(); i++ ) {
+
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+
                         boolean success = jsonObject.getBoolean("success");
                         if (success) {
                             int r_num = jsonObject.getInt("r_num");
@@ -70,9 +77,12 @@ public class RoomListActivity extends AppCompatActivity {
                             int join_num = jsonObject.getInt("join_num");
                             String sex = jsonObject.getString("sex");
                             roomData.add(new RoomData(r_num, r_title, join_num, sex));
+
+
+
                         }
                     }
-                    adapter = new ListViewAdapter();
+                    adapter = new ListViewAdapter(RoomListActivity.this);
                     listview = (ListView) findViewById(R.id.List_view);
                     listview.setAdapter(adapter);
 
@@ -81,12 +91,12 @@ public class RoomListActivity extends AppCompatActivity {
                         if(roomData.get(i).getSex().equals("남")) {
                             adapter.addVO(ContextCompat.getDrawable(getApplicationContext(), img[0])
                                     , "방 제목: " + roomData.get(i).getR_title()
-                                    , "인원 수: " + roomData.get(i).getJoin_num());
+                                    , "인원 수: " + roomData.get(i).getJoin_num(),roomData.get(i).getR_num()); //kjt-수정(매칭신청)
                         }
                         else {
                             adapter.addVO(ContextCompat.getDrawable(getApplicationContext(), img[1])
                                     , "방 제목: " + roomData.get(i).getR_title()
-                                    , "인원 수: " + roomData.get(i).getJoin_num());
+                                    , "인원 수: " + roomData.get(i).getJoin_num(),roomData.get(i).getR_num()); //kjt-수정(매칭신청)
                         }
                     }
                 } catch (Exception e)

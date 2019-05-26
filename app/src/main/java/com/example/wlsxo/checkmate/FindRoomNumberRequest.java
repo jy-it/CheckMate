@@ -1,7 +1,7 @@
 
 package com.example.wlsxo.checkmate;
 
-        import android.util.Log;
+import android.util.Log;
 
         import com.android.volley.Response;
         import com.android.volley.toolbox.StringRequest;
