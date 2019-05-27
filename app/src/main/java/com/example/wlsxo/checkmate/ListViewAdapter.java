@@ -33,6 +33,9 @@ public class ListViewAdapter extends BaseAdapter {
     int r_num = 0;//kjt-수정(매칭신청)
     ArrayList<Integer> roomNumData = new ArrayList<Integer>();//kjt-수정(매칭신청)
 
+    // 이미 신청했는디 체크하기 위한 변수
+    int apply_check = 0;
+
     Context context;
 
     public ListViewAdapter(Context context) {
@@ -95,193 +98,246 @@ public class ListViewAdapter extends BaseAdapter {
                 Toast.makeText(context, roomNumData.get(pos) +"번 방이 클릭되었습니다.", Toast.LENGTH_SHORT).show();
 
                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                ListRoomapplyDialog customDialog = new ListRoomapplyDialog(context);
+               // ListRoomapplyDialog customDialog = new ListRoomapplyDialog(context);
                 // 커스텀 다이얼로그를 호출한다.
                 // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
 
 
 
-                //팀 번호를 받아온다.
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                //이미 방을 만들었는지 검사
+                Response.Listener<String> responseListener_check = new Response.Listener<String>() {
+
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
+
                         try {
+
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
+                            if (success) {
 
-                            if(success) {
-                                //받은 데이터 읽어와서
-                                final int t_num = jsonResponse.getInt("teamNumber");
+                                apply_check = jsonResponse.getInt("checkCount");
 
+                                Log.i("신청여부 = ",apply_check + "");
 
-                                // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-                                final Dialog dlg = new Dialog(context);
-
-                                // 액티비티의 타이틀바를 숨긴다.
-                                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-                                // 커스텀 다이얼로그의 레이아웃을 설정한다.
-                                dlg.setContentView(R.layout.listroom_applydialog);
-
-                                // 커스텀 다이얼로그를 노출한다.
-                                dlg.show();
-
-                                // 커스텀 다이얼로그의 각 위젯들을 정의한다.
-
-                                final EditText idcode1 = (EditText) dlg.findViewById(R.id.inputidcode1);
-                                final EditText idcode2 = (EditText) dlg.findViewById(R.id.inputidcode2);
-                                final EditText idcode3 = (EditText) dlg.findViewById(R.id.inputidcode3);
-                                final EditText idcode4 = (EditText) dlg.findViewById(R.id.inputidcode4);
-
-                                final Button okButton = (Button) dlg.findViewById(R.id.dialog_ok);
-                                final Button cancelButton = (Button) dlg.findViewById(R.id.dialog_Cancel);
+                                //신청여부가 0이라면 통과
+                                if(apply_check == 0){
 
 
-                                idcode1.setText(MainActivity.userID); //일단 본인은 자동으로 추가
-                                idcode1.setClickable(false);
-                                idcode1.setFocusable(false);
+                                    //팀 번호를 받아온다.
+                                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonResponse = new JSONObject(response);
+                                                boolean success = jsonResponse.getBoolean("success");
 
-                                okButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-
-
-
-                                        //매칭 신청 맴버 등록
-                                        Response.Listener<String> responseListener_member = new Response.Listener<String>() {
-
-                                            @Override
-                                            public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
-                                                try {
-
-                                                    JSONObject jsonResponse = new JSONObject(response);
-                                                    boolean success = jsonResponse.getBoolean("success");
-                                                    if (success) {
-
-                                                        Log.i("신청 맴버등록 ","SQL은 성공");
+                                                if(success) {
+                                                    //받은 데이터 읽어와서
+                                                    final int t_num = jsonResponse.getInt("teamNumber");
 
 
-                                                    } else {
-                                                        Log.i("맴버등록 ","실패");
-                                                        Toast.makeText(context, "신청 맴버 DB에 저장 실패", Toast.LENGTH_LONG).show();
-                                                    }
-                                                } catch (JSONException e) {
-                                                    Log.i("신청 맴버등록","예외발생");
-                                                    e.printStackTrace();
+                                                    // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
+                                                    final Dialog dlg = new Dialog(context);
+
+                                                    // 액티비티의 타이틀바를 숨긴다.
+                                                    dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                                                    // 커스텀 다이얼로그의 레이아웃을 설정한다.
+                                                    dlg.setContentView(R.layout.listroom_applydialog);
+
+                                                    // 커스텀 다이얼로그를 노출한다.
+                                                    dlg.show();
+
+                                                    // 커스텀 다이얼로그의 각 위젯들을 정의한다.
+
+                                                    final EditText idcode1 = (EditText) dlg.findViewById(R.id.inputidcode1);
+                                                    final EditText idcode2 = (EditText) dlg.findViewById(R.id.inputidcode2);
+                                                    final EditText idcode3 = (EditText) dlg.findViewById(R.id.inputidcode3);
+                                                    final EditText idcode4 = (EditText) dlg.findViewById(R.id.inputidcode4);
+
+                                                    final Button okButton = (Button) dlg.findViewById(R.id.dialog_ok);
+                                                    final Button cancelButton = (Button) dlg.findViewById(R.id.dialog_Cancel);
+
+
+                                                    idcode1.setText(MainActivity.userID); //일단 본인은 자동으로 추가
+                                                    idcode1.setClickable(false);
+                                                    idcode1.setFocusable(false);
+
+                                                    okButton.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+
+
+
+                                                            //매칭 신청 맴버 등록
+                                                            Response.Listener<String> responseListener_member = new Response.Listener<String>() {
+
+                                                                @Override
+                                                                public void onResponse(String response) {//아래에서 보낸 파라미터와 php요청에 대한 응답받음
+                                                                    try {
+
+                                                                        JSONObject jsonResponse = new JSONObject(response);
+                                                                        boolean success = jsonResponse.getBoolean("success");
+                                                                        if (success) {
+
+                                                                            Log.i("신청 맴버등록 ","SQL은 성공");
+
+
+                                                                        } else {
+                                                                            Log.i("맴버등록 ","실패");
+                                                                            Toast.makeText(context, "신청 맴버 DB에 저장 실패", Toast.LENGTH_LONG).show();
+                                                                        }
+                                                                    } catch (JSONException e) {
+                                                                        Log.i("신청 맴버등록","예외발생");
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                }
+                                                            };
+
+
+                                                            if( (idcode2.getText().toString().matches("")) && (idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){ //1명 신청
+
+                                                                //파라미터들을 객체에 담는다.
+                                                                InsertApplicantRequest1 insertApplicantRequest1 = new InsertApplicantRequest1(roomNumData.get(pos), t_num, idcode1.getText().toString(), responseListener_member);
+
+                                                                //큐에 파라미터가 담긴 객체를 넣는다.
+                                                                RequestQueue queue = Volley.newRequestQueue(context);
+                                                                queue.add(insertApplicantRequest1);
+                                                                Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                                            }
+                                                            else if( !(idcode2.getText().toString().matches("")) && (idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){//2명 신청
+
+                                                                //파라미터들을 객체에 담는다.
+                                                                InsertApplicantRequest2 insertApplicantRequest2 = new InsertApplicantRequest2(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), responseListener_member);
+
+                                                                //큐에 파라미터가 담긴 객체를 넣는다.
+                                                                RequestQueue queue = Volley.newRequestQueue(context);
+                                                                queue.add(insertApplicantRequest2);
+                                                                Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            else if( !(idcode2.getText().toString().matches("")) && (!idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){//3명 신청
+
+                                                                //파라미터들을 객체에 담는다.
+                                                                InsertApplicantRequest3 insertApplicantRequest3 = new InsertApplicantRequest3(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), idcode3.getText().toString(), responseListener_member);
+
+                                                                //큐에 파라미터가 담긴 객체를 넣는다.
+                                                                RequestQueue queue = Volley.newRequestQueue(context);
+                                                                queue.add(insertApplicantRequest3);
+                                                                Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                            else if( !(idcode2.getText().toString().matches("")) && !(idcode3.getText().toString().matches("")) && !(idcode4.getText().toString().matches(""))){//4명 신청
+
+                                                                //파라미터들을 객체에 담는다.
+                                                                InsertApplicantRequest4 insertApplicantRequest4 = new InsertApplicantRequest4(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), idcode3.getText().toString(), idcode4.getText().toString(), responseListener_member);
+
+                                                                //큐에 파라미터가 담긴 객체를 넣는다.
+                                                                RequestQueue queue = Volley.newRequestQueue(context);
+                                                                queue.add(insertApplicantRequest4);
+                                                                Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
+                                                            }
+
+
+
+                                                            //팀 번호를 업데이트 한다
+
+                                                            //데이터 받는 부분
+                                                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                                                @Override
+                                                                public void onResponse(String response) {
+                                                                    try {
+                                                                        JSONObject jsonResponse = new JSONObject(response);
+                                                                        boolean success = jsonResponse.getBoolean("success");
+
+                                                                        if(success) {
+                                                                            Toast.makeText(context, "팀 번호 업데이트 성공.", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                        else {//데이터 송수신 실패시
+                                                                            Toast.makeText(context, "팀 번호 업데이트 실패.", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    } catch (Exception e)
+                                                                    {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                }
+                                                            };
+
+                                                            UpdateTeamNumberRequest updateTeamNumberRequest = new UpdateTeamNumberRequest(responseListener);//보낼 데이터를 객체로 만듬
+                                                            RequestQueue queue = Volley.newRequestQueue(context);//데이터를 실을 큐
+                                                            queue.add(updateTeamNumberRequest);//데이터 전송
+
+
+
+
+
+
+                                                            // 커스텀 다이얼로그를 종료한다.
+                                                            dlg.dismiss();
+                                                        }
+                                                    });
+
+
+
+                                                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            Toast.makeText(context, "취소 했습니다.", Toast.LENGTH_SHORT).show();
+
+                                                            // 커스텀 다이얼로그를 종료한다.
+                                                            dlg.dismiss();
+                                                        }
+                                                    });
+
+
+
+
                                                 }
-                                            }
-                                        };
-
-
-                                        if( (idcode2.getText().toString().matches("")) && (idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){ //1명 신청
-
-                                            //파라미터들을 객체에 담는다.
-                                            InsertApplicantRequest1 insertApplicantRequest1 = new InsertApplicantRequest1(roomNumData.get(pos), t_num, idcode1.getText().toString(), responseListener_member);
-
-                                            //큐에 파라미터가 담긴 객체를 넣는다.
-                                            RequestQueue queue = Volley.newRequestQueue(context);
-                                            queue.add(insertApplicantRequest1);
-                                            Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
-
-                                        }
-                                        else if( !(idcode2.getText().toString().matches("")) && (idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){//2명 신청
-
-                                            //파라미터들을 객체에 담는다.
-                                            InsertApplicantRequest2 insertApplicantRequest2 = new InsertApplicantRequest2(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), responseListener_member);
-
-                                            //큐에 파라미터가 담긴 객체를 넣는다.
-                                            RequestQueue queue = Volley.newRequestQueue(context);
-                                            queue.add(insertApplicantRequest2);
-                                            Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else if( !(idcode2.getText().toString().matches("")) && (!idcode3.getText().toString().matches("")) && (idcode4.getText().toString().matches(""))){//3명 신청
-
-                                            //파라미터들을 객체에 담는다.
-                                            InsertApplicantRequest3 insertApplicantRequest3 = new InsertApplicantRequest3(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), idcode3.getText().toString(), responseListener_member);
-
-                                            //큐에 파라미터가 담긴 객체를 넣는다.
-                                            RequestQueue queue = Volley.newRequestQueue(context);
-                                            queue.add(insertApplicantRequest3);
-                                            Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else if( !(idcode2.getText().toString().matches("")) && !(idcode3.getText().toString().matches("")) && !(idcode4.getText().toString().matches(""))){//4명 신청
-
-                                            //파라미터들을 객체에 담는다.
-                                            InsertApplicantRequest4 insertApplicantRequest4 = new InsertApplicantRequest4(roomNumData.get(pos), t_num, idcode1.getText().toString(), idcode2.getText().toString(), idcode3.getText().toString(), idcode4.getText().toString(), responseListener_member);
-
-                                            //큐에 파라미터가 담긴 객체를 넣는다.
-                                            RequestQueue queue = Volley.newRequestQueue(context);
-                                            queue.add(insertApplicantRequest4);
-                                            Toast.makeText(context, "신청 되었습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-
-
-
-                                        //팀 번호를 업데이트 한다
-
-                                        //데이터 받는 부분
-                                        Response.Listener<String> responseListener = new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                try {
-                                                    JSONObject jsonResponse = new JSONObject(response);
-                                                    boolean success = jsonResponse.getBoolean("success");
-
-                                                    if(success) {
-                                                        Toast.makeText(context, "팀 번호 업데이트 성공.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                    else {//데이터 송수신 실패시
-                                                        Toast.makeText(context, "팀 번호 업데이트 실패.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                } catch (Exception e)
-                                                {
-                                                    e.printStackTrace();
+                                                else {//데이터 송수신 실패시
+                                                    Toast.makeText(context, "팀번호를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
                                                 }
+                                            } catch (Exception e)
+                                            {
+                                                e.printStackTrace();
                                             }
-                                        };
+                                        }
+                                    };
+                                    FindTeamRequest findTeamRequest = new FindTeamRequest(responseListener);//보낼 데이터를 객체로 만듬
+                                    RequestQueue queue = Volley.newRequestQueue(context);//데이터를 실을 큐
+                                    queue.add(findTeamRequest);//데이터 전송
+                                }
+                                else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setMessage("이미 신청하신 상태입니다.")
+                                            .setNegativeButton("돌아가기", null)
+                                            .create()
+                                            .show();
+                                }
 
-                                        UpdateTeamNumberRequest updateTeamNumberRequest = new UpdateTeamNumberRequest(responseListener);//보낼 데이터를 객체로 만듬
-                                        RequestQueue queue = Volley.newRequestQueue(context);//데이터를 실을 큐
-                                        queue.add(updateTeamNumberRequest);//데이터 전송
-
-
-
-
-
-
-                                        // 커스텀 다이얼로그를 종료한다.
-                                        dlg.dismiss();
-                                    }
-                                });
-
-
-
-                                cancelButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Toast.makeText(context, "취소 했습니다.", Toast.LENGTH_SHORT).show();
-
-                                        // 커스텀 다이얼로그를 종료한다.
-                                        dlg.dismiss();
-                                    }
-                                });
-
-
-
-
+                            } else {
+                                Log.i("이미 신청했는지 체크","검사 실패");
                             }
-                            else {//데이터 송수신 실패시
-                                Toast.makeText(context, "팀번호를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (Exception e)
-                        {
+                        } catch (JSONException e) {
                             e.printStackTrace();
+
+                            Log.i("이미 신청했는지 체크","예외발생");
                         }
+
                     }
                 };
-                FindTeamRequest findTeamRequest = new FindTeamRequest(responseListener);//보낼 데이터를 객체로 만듬
-                RequestQueue queue = Volley.newRequestQueue(context);//데이터를 실을 큐
-                queue.add(findTeamRequest);//데이터 전송
+                //파라미터들을 객체에 담는다.
+                CheckApplyRequest checkApplyRequest = new CheckApplyRequest(MainActivity.userID,roomNumData.get(pos), responseListener_check);
+
+                //큐에 파라미터가 담긴 객체를 넣는다.
+                RequestQueue queue_check = Volley.newRequestQueue(context);
+                queue_check.add(checkApplyRequest);
+
+
+
+
+
+
 
                 //customDialog.callFunction(roomNumData.get(pos));
             }
@@ -307,7 +363,10 @@ public class ListViewAdapter extends BaseAdapter {
                 ListRoomdetailDialog1 customDialog = new ListRoomdetailDialog1(context);
                 // 커스텀 다이얼로그를 호출한다.
                 // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                customDialog.callFunction();
+                customDialog.callFunction(context,roomNumData.get(pos));
+
+
+
             }
         });
 

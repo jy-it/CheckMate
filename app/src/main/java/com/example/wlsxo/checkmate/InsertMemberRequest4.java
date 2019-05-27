@@ -17,7 +17,7 @@ public class InsertMemberRequest4  extends StringRequest {
         super(Method.POST,URL, listener, null);
         parameters = new HashMap<>();
 
-        parameters.put("roomNumber",roomNumber + "");
+        parameters.put("roomNum",roomNumber + "");
 
         parameters.put("oneID",memberID[0]);
         parameters.put("twoID",memberID[1]);
@@ -28,8 +28,6 @@ public class InsertMemberRequest4  extends StringRequest {
         Log.i("맴버2",parameters.get("twoID"));
         Log.i("맴버3",parameters.get("threeID"));
         Log.i("맴버4",parameters.get("fourID"));
-
-        Log.i("방번호",parameters.get("roomNum"));
 
     }
 
